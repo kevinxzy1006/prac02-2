@@ -34,7 +34,7 @@ int array_min(int integers[], int length)
     int min = integers[0];
     for (int i = 0; i < length; i++)
     {
-        if (integers[i + 1] < min)
+        if (integers[i] < min)
         {
             // find the minimum value by comparing all the elements.
             min = integers[i];
@@ -48,7 +48,6 @@ int sum_min_max(int integers[], int length)
     // If the length is 0 or negative value, return -1.
     if (length <= 0)
     {
-
         return -1;
     }
 
@@ -57,7 +56,6 @@ int sum_min_max(int integers[], int length)
     int min = array_min(integers, length);
 
     int sum = max + min; // find the sum of the max and min value.
-
 
     return sum;
 }
