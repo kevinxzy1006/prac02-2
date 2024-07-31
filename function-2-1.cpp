@@ -1,31 +1,27 @@
 #include <iostream>
 #include <string>
-#include <algorithm> // for std::reverse
+#include <bitset> // For std::bitset
 
-using namespace std;
-
-// Transform the integer decimal number into a binary, and print out the result.
-void print_binary_str(const string &decimal_number)
+void print_binary_str(std::string decimal_number)
 {
-    // Transform the integer decimal string to an integer
-    int num = stoi(decimal_number);
+    // Convert the string to an integer
+    int number = std::stoi(decimal_number);
 
-    // If the number is 0, print directly.
-    if (num == 0)
+    // Convert the integer to a binary string
+    std::string binary_string = std::bitset<32>(number).to_string();
+
+    // Remove leading zeros
+    size_t pos = binary_string.find('1');
+    if (pos != std::string::npos)
     {
-        cout << "0" << endl;
+        binary_string = binary_string.substr(pos);
+    }
+    else
+    {
+        // Special case: the number is 0
+        binary_string = "0";
     }
 
-    // transform the integer into a binary.
-    string binary_result;
-    while (num > 0)
-    { // check if this is a positive number
-        binary_result += (num % 2 == 0 ? "0" : "1");
-        num /= 2;
-    }
-    // Reverse the string to get the correct binary representation.
-    reverse(binary_result.begin(), binary_result.end());
-
-    // Print out the binary string
-    cout << binary_result << endl;
+    // Print the binary string
+    std::cout << binary_string << std::endl;
 }
